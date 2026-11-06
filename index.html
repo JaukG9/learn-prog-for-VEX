@@ -142,6 +142,67 @@ motor.move_velocity(200);   // move the motor at 200rpm
 
             <div id="quiz-cpp"></div>
         </section>
+
+        <!-- PROS -->
+        <section id="pros" class="page">
+            <h2>Fundamentals of PROS</h2>
+            <p><strong>Goal: Know which functions run and when. Learn to use motors, pistons, controllers, and sensors.</strong></p>
+
+            <h3>The 5 Competition Functions (in <code>main.cpp</code>)</h3>
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>Runs when...</th>
+                </tr>
+                <tr>
+                    <td><code>initialize()</code></td>
+                    <td>the program starts. Set up and calibrate sensors here.</td>
+                </tr>
+                <tr>
+                    <td><code>disabled()</code></td>
+                    <td>the robot is disabled by the field.</td>
+                </tr>
+                <tr>
+                    <td><code>competition_initialize()</code></td>
+                    <td>connected to the field control, before the match (useed for auton selectors).</td>
+                </tr>
+                <tr>
+                    <td><code>autonomous()</code></td>
+                    <td>the 15s (match) and 60s (skills) autonomous period starts.</td>
+                </tr>
+                <tr>
+                    <td><code>opcontrol()</code></td>
+                    <td>the driver control period starts.</td>
+                </tr>
+            </table>
+
+            <h3>Reading the Controller</h3>
+<pre><code class="language-cpp">pros::Controller controller(pros::E_CONTROLLER_MASTER)  // creates a controller object called "controller"
+
+void opcontrol(){
+    pros::Motor lift(2);
+    
+    if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){          // are you pressing R1?
+        lift.move_velocity(200);
+    }else if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){    // are you pressing R2?
+        lift.move_velocity(-200);
+    }else{
+        lift.brake();
+    }
+
+    pros::delay(20);
+}
+</code></pre>
+            <p>Quick note: When reading the controller, using <code>controller.get_digital</code> gives a button press (0 or 1), while using <code>controller.get_analog</code> gives a joystick input (range from -127 to 127).</p>
+        
+            <h3>Printing for Debugging</h3>
+            <p>Sometimes you need to look at some value to debug your code. To do this, we can print to the brain or terminal.</p>
+<pre><code class="language-cpp">pros::lcd::print(0, "Angle: %f", chassis.getPose().theta)   // prints a float to the brain which is the angle
+printf("Hello from the terminal.")                          // prints to the PROS terminal instead of the brain
+</code></pre>
+
+            <div id="quiz-pros"></div>
+        </section>
     </main>
 </body>
 </html>

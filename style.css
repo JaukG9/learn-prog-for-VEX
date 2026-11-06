@@ -48,9 +48,12 @@ ul{
 }
 
 :root {
-  --code-bg: #0b0f19;
-  --code-inline-bg: rgb(190, 190, 190);
-  --code-border: #2a3a5c;
+    --code-bg: #0b0f19;
+    --code-inline-bg: rgb(190, 190, 190);
+    --code-border: #2a3a5c;
+
+    --panel2: #1e2a42;
+    --border: #2a3a5c;
 }
 
 code{
@@ -77,4 +80,21 @@ pre code{
     padding: 0;
     font-size: .86rem;
     border-radius: 0;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    font-size: .9rem;
+}
+
+th, td{
+    border: 1px solid var(--border);
+    padding: 7px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+th{
+    background: rgb(190, 190, 190);
 }
