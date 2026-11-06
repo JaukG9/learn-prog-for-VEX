@@ -535,7 +535,7 @@ document.documentElement.classList.add("js");
 
             const input = document.createElement("input");
             input.type = "text";
-            input.placeholder = "?";
+            input.placeholder = "";
             input.spellcheck = false;
             const longest = Math.max(...item.answer.map(a => a.length), 3);
             input.style.width = "calc(" + longest + "ch + 28px)";
