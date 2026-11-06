@@ -81,7 +81,7 @@ function draw() {
     });
     ctx.stroke();
 
-    ctx.fillStyle = "#black";
+    ctx.fillStyle = "black";
     ctx.font = "12px system-ui";
     ctx.fillText("target = " + TARGET, pad + 6, sy(TARGET) - 6);
     ctx.fillText("time →", W - pad - 44, H - 10);

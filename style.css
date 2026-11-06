@@ -164,3 +164,40 @@ button:hover{
     color: #555555;
     margin-bottom: 0;
 }
+
+.sim-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.sim-row canvas{
+    width: 432px;
+    max-width: 100%;
+}
+
+.sim-side{
+    flex: 1;
+    min-width: 240px;
+}
+
+textarea{
+    width: 100%;
+    min-height: 160px;
+    padding: 8px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.buttons{
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.error{color: #c0392b;}
+.success{color: #2e7d32;}
