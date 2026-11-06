@@ -201,3 +201,155 @@ textarea{
 
 .error{color: #c0392b;}
 .success{color: #2e7d32;}
+
+/* ---------- Page navigation (added) ---------- */
+.js .page{
+    display: none;
+}
+
+.js .page.show{
+    display: block;
+}
+
+nav{
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cccccc;
+}
+
+#navLinks{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 10px;
+}
+
+#navLinks a{
+    color: #222222;
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+#navLinks a:hover{
+    background: #f2f2f2;
+}
+
+#navLinks a.active{
+    background: #1a5fd0;
+    color: #ffffff;
+}
+
+.progress{
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #555555;
+}
+
+.page-footer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+.quiz{
+    margin: 16px 0;
+}
+
+.quiz h3{
+    margin-top: 0;
+}
+
+.q{
+    margin-bottom: 18px;
+}
+
+.q p{
+    margin: 0 0 8px;
+    font-weight: bold;
+}
+
+.opt{
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 5px 0;
+    padding: 8px 12px;
+}
+
+.opt.right{
+    background: #d9f2e1;
+    border-color: #2e7d32;
+}
+
+.opt.wrong{
+    background: #fadbd8;
+    border-color: #c0392b;
+}
+
+.expl{
+    font-size: 0.9rem;
+    color: #555555;
+    margin-top: 4px;
+}
+
+.bugbox{
+    background: #f7f7f7;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 8px;
+    overflow-x: auto;
+}
+
+.bugline{
+    font-family: monospace;
+    font-size: 0.9rem;
+    white-space: pre;
+    min-height: 1.4em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.bugline:hover{
+    background: #e6e6e6;
+}
+
+.bugline.right{
+    background: #d9f2e1;
+}
+
+.bugline.wrong{
+    background: #fadbd8;
+}
+
+.fib{
+    font-family: monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    background: #f7f7f7;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin: 8px 0;
+}
+
+.fib input{
+    font-family: monospace;
+    font-size: 0.9rem;
+    padding: 3px 6px;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+}
+
+.fib button{
+    margin-left: 8px;
+}
+
+.fib .fb{
+    margin-left: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+}
