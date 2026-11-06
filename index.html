@@ -514,6 +514,77 @@ turnToHeading(180)</textarea>
 
             <div id="quiz-lemlib"></div>
         </section>
+
+        <!-- Practice -->
+        <section id="practice" class="page">
+            <h2>Practice</h2>
+            <h3>Find the Bug</h3>
+            <p>Click the line that contains the bug.</p>
+
+            <div class="card">
+                <div id="bugTitle" style="font-weight:600;margin-bottom:6px"></div>
+                <div id="bugCode" class="bugbox"></div>
+                <div id="bugResult" class="expl" style="margin-top:8px"></div>
+                <button class="ghost" id="bugNext" style="margin-top:8px">Next puzzle</button>
+            </div>
+
+            <h3>Fill in the blank</h3>
+            <div class="card" id="fibArea"></div>
+        </section>
+
+        <!-- Cheatsheet -->
+        <section class="page" id="cheat">
+            <h2>Cheat sheet</h2>
+            <table>
+                <tr><th>Task</th><th>Code</th></tr>
+                <tr><td>Motor</td><td><code>pros::Motor m(1);</code> <code>m.move(127);</code></td></tr>
+                <tr><td>Reversed motor group</td><td><code>pros::MotorGroup g({-1,-2,-3});</code></td></tr>
+                <tr><td>Controller button</td><td><code>master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)</code></td></tr>
+                <tr><td>Button press (once)</td><td><code>master.get_digital_new_press(...)</code></td></tr>
+                <tr><td>Joystick</td><td><code>master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)</code></td></tr>
+                <tr><td>Wait</td><td><code>pros::delay(20);</code></td></tr>
+                <tr><td>Calibrate</td><td><code>chassis.calibrate();</code></td></tr>
+                <tr><td>Set position</td><td><code>chassis.setPose(x, y, theta);</code></td></tr>
+                <tr><td>Turn</td><td><code>chassis.turnToHeading(90, 2000);</code></td></tr>
+                <tr><td>Move to point</td><td><code>chassis.moveToPoint(x, y, 4000);</code></td></tr>
+                <tr><td>Move to pose</td><td><code>chassis.moveToPose(x, y, theta, 4000);</code></td></tr>
+                <tr><td>Reverse</td><td><code>{.forwards = false}</code></td></tr>
+                <tr><td>Arcade drive</td><td><code>chassis.arcade(leftY, rightX);</code></td></tr>
+            </table>
+        </section>
+
+        <!-- Glossary -->
+        <section class="page" id="glossary">
+            <h2>Glossary</h2>
+            <table>
+                <tr><th>Term</th><th>Meaning</th></tr>
+                <tr><td>PROS</td><td>Open-source framework for programming VEX V5 in C/C++.</td></tr>
+                <tr><td>LemLib</td><td>PROS library providing odometry and motion algorithms.</td></tr>
+                <tr><td>Odometry</td><td>Estimating the robot's position and heading from sensors.</td></tr>
+                <tr><td>PID</td><td>Feedback controller using Proportional, Integral, Derivative terms.</td></tr>
+                <tr><td>Heading</td><td>The direction the robot faces, in degrees (0° = +Y, clockwise).</td></tr>
+                <tr><td>Pose</td><td>Position and heading together: (x, y, θ).</td></tr>
+                <tr><td>IMU</td><td>Inertial sensor that measures rotation (heading).</td></tr>
+                <tr><td>Track width</td><td>Distance between the left and right wheel centers.</td></tr>
+                <tr><td>Deadband</td><td>A small input range ignored to prevent stick drift.</td></tr>
+                <tr><td>Lateral / Angular</td><td>Straight-line movement vs. turning movement.</td></tr>
+            </table>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section class="page" id="trouble">
+            <h2>Troubleshooting</h2>
+                <table>
+                <tr><th>Symptom</th><th>Likely cause</th></tr>
+                <tr><td>Build error: <code>was not declared in this scope</code></td><td>Missing <code>#include</code>, a typo, or the wrong namespace (<code>pros::</code> / <code>lemlib::</code>).</td></tr>
+                <tr><td>Motor spins the wrong way</td><td>Negate the port number: <code>-1</code>.</td></tr>
+                <tr><td>Robot spins in circles in autonomous</td><td>Left/right motors reversed incorrectly, or IMU not calibrated.</td></tr>
+                <tr><td>Robot drives wrong distance</td><td>Wrong wheel diameter, RPM, or track width.</td></tr>
+                <tr><td>Robot oscillates</td><td>kP too high or kD too low.</td></tr>
+                <tr><td>Everything freezes</td><td>Missing <code>pros::delay()</code> in a loop.</td></tr>
+                <tr><td>Position drifts over time</td><td>Slipping wheels, no tracking wheels, or the IMU was moved during calibration.</td></tr>
+            </table>
+        </section>
     </main>
 
     <script src="pid.js"></script>
