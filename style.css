@@ -54,6 +54,19 @@ ul{
 
     --panel2: #1e2a42;
     --border: #2a3a5c;
+
+    --bg: #0f1420;
+    --panel: #172033;
+    --panel2: #1e2a42;
+    --text: #e6ebf5;
+    --muted: #9aa7c2;
+    --accent: #4da3ff;
+}
+
+.wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 28px 16px;
 }
 
 code{
@@ -97,4 +110,57 @@ th, td{
 
 th{
     background: rgb(190, 190, 190);
+}
+
+.card{
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 16px;
+}
+
+canvas{
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+}
+
+.slider{
+    display: grid;
+    grid-template-columns: 36px 1fr 48px;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.slider span{
+    text-align: right;
+    font-family: monospace;
+}
+
+.readout{
+    margin: 12px 0;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #555555;
+}
+
+button{
+    background: #f2f2f2;
+    color: #222222;
+    border: 1px solid #aaaaaa;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #e6e6e6;
+}
+
+.hint {
+    font-size: 0.9rem;
+    color: #555555;
+    margin-bottom: 0;
 }

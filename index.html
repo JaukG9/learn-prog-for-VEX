@@ -21,7 +21,7 @@
         </nav>
     </div>
 
-    <main>
+    <main class="wrap">
         <!-- Home -->
         <section id="home", class="page">
             <h2>Home</h2>
@@ -271,6 +271,85 @@ while(true){
 
             <div id="quiz-driver"></div>
         </section>
+
+        <!-- Programming Concepts -->
+        <section id="concepts" class="page">
+            <h2>VEX Programming Concepts</h2>
+            <p><strong>Goal: Understand essential programming concepts surrounding odometry.</strong></p>
+
+            <h3>Time-based Autons</h3>
+            <p>Unfortunately, when programming for VEX, we cannot use simple time-based autonomous routines. Saying "drive forward for 1 second" has too much ambiguity.
+                There can be inconsistencies in the floor tiles, battery, drivetrain motors, etc.</p>
+            <p>To address this, we use <strong>feedback loops</strong>, also known as PID.</p>
+            
+            <h3>PID in Plain English</h3>
+            <p>There are three parts to PID: proportional (P), integral (I), and derivative (D). Using these, the robot is able to reach its target effectively.</p>
+            <ul>
+                <li>
+                    Proportional
+                    <ul>
+                        <li>Used to address "current" error</li>
+                        <li>Looks at the current error and moves to close the gap</li>
+                    </ul>
+                </li>
+                <li>
+                    Integral
+                    <ul>
+                        <li>Used to address "past" error</li>
+                        <li>Looks at consistent past errors and accounts for it</li>
+                    </ul>
+                </li>
+                <li>
+                    Derivative
+                    <ul>
+                        <li>Used to address "future" error</li>
+                        <li>Looks at the slope of change to address any future errors</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>You can watch a very good video about PID <a href="https://www.youtube.com/watch?v=srLMG0jlRMk", target="_blank">here</a>.</p>
+        
+            <h1>Interactive PID Demo</h1>
+            <p>A simple robot starts at 0 and tries to reach the target (dashed line). Move the sliders and watch the response.</p>
+
+            <div class="card">
+                <canvas id="pidCanvas" width="520" height="260"></canvas>
+
+                <div class="controls">
+                    <div class="slider">
+                        <label for="kp">kP</label>
+                        <input type="range" id="kp" min="0" max="50" step="0.5" value="8">
+                        <span id="kpv">8</span>
+                    </div>
+                
+                    <div class="slider">
+                        <label for="ki">kI</label>
+                        <input type="range" id="ki" min="0" max="5" step="0.05" value="0">
+                        <span id="kiv">0</span>
+                    </div>
+                
+                    <div class="slider">
+                        <label for="kd">kD</label>
+                        <input type="range" id="kd" min="0" max="30" step="0.5" value="0">
+                        <span id="kdv">0</span>
+                    </div>
+
+                    <div class="readout" id="pidInfo"></div>
+                    <button id="pidReset">Reset</button>
+                </div>
+
+                <p class="hint">
+                    Try: kP = 30 with kD = 0 (it oscillates). Then raise kD until it settles. Add a little kI if it stops just short of the target.
+                </p>
+            </div>
+
+            <h3>Odometry</h3>
+            <p>Odometry is how the robot tracks its position <code>(x, y)</code> and heading <code>θ</code>. It uses sensor data (IMU, tracking wheels, motor encoders). LemLib does this for you in the background, so you can just say something like "go to (24, 48)" and the robot will know.</p>
+        
+            <div id="quiz-concepts"></div>
+        </section>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
