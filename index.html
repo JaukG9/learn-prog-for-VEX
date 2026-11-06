@@ -203,6 +203,74 @@ printf("Hello from the terminal.")                          // prints to the PRO
 
             <div id="quiz-pros"></div>
         </section>
+
+        <!-- Driver Control -->
+        <section id="driver", class="page">
+            <h2>Driver Control</h2>
+            <p><strong>Goal: Drive with a controller using tank or arcade, and a deadband.</strong></p>
+
+            <h3 style="margin-bottom: 0.2rem;">Tank vs. Arcade</h3>
+            <ul>
+                <li>
+                    Tank Drive
+                    <ul>
+                        <li>The left joystick controls the left side of the drivertrain</li>
+                        <li>The right joystick controls the right side of the drivetrain</li>
+                    </ul>
+                </li>
+                <li>
+                    Arcade Drive
+                    <ul>
+                        <li>The left joystick controls the forward and back motion</li>
+                        <li>The right joystick controls the turning motion</li>
+                    </ul>
+                </li>
+            </ul>
+
+<pre><code class="language-cpp">pros::MotorGroup left_mg({-1, -2});     // negative = reversed
+pros::MotorGroup right_mg({3, 4});
+
+void opcontrol(){
+    while(true){
+        int forward = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);      // vertical component of left joystick
+        int turning = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);     // horizontal component of right joystick
+
+        // deadband to ignore stick drift
+        if(abs(forward) &lt 5) forward = 0;
+        if(abs(turning) &lt 5) turning = 0;
+
+        left_mg.move(forward + turn);
+        right_mg.move(forward - turn);
+
+        pros::delay(20);
+    }
+}
+</code></pre>
+            <p>We will look at an easier way to do this later, but for now this is the simplest implementation. Can you tell whether this is tank or arcade drive?</p>
+            <p>Try swapping it to tank drive. How would you do this?</p>
+
+            <h3>Toggle vs. Hold</h3>
+            <p style="margin-bottom: 0.2rem;">There are two ways to actuate pistons or motors. Either you can toggle them or hold them.</p>
+            <ul>
+                <li>Toggle: If you press the button it switches the state. When you press it again, it switches back.</li>
+                <li>Hold: The state is switched based on whether or not you're holding the button.</li>
+            </ul>
+
+<pre><code class="language-cpp">bool clawClosed = false;
+
+while(true){
+    if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)){
+        clawClosed = !clawClosed;       // set to false if it's true, and set to true if it's false
+        claw.set_value(clawClosed);
+    }
+
+    pros::delay(20);
+}
+</code></pre>
+            <p>The <code>.get_digital_new_press</code> checks if a button was pressed after not being pressed. This is useful for toggles.</p>
+
+            <div id="quiz-driver"></div>
+        </section>
     </main>
 </body>
 </html>
