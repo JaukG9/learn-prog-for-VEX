@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEX PROS Practice</title>
+
+    <link rel="stylesheet", href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <script>
+        hljs.highlightAll();
+    </script>
+
+    <div class="layout">
+        <nav>
+            <h1>PROS & Lemlib</h1>
+            <div id="navLinks"></div>
+        </nav>
+    </div>
+
+    <main>
+        <!-- Home -->
+        <section id="home", class="page">
+            <h2>Home</h2>
+            <p>Practice/lessons for PROS & LemLib. Try to go through this on your own (I tried to make it as simple as possible, but you can ask me questions whenever you need).</p>
+            
+            <p style="margin-bottom: 0.2rem">Basic Roadmap</p>
+            <ul style="margin-top: 0">
+                <li>Setup</li>
+                <li>Basic C++</li>
+                <li>Fundamentals of PROS</li>
+                <li>Driver Control</li>
+                <li>VEX Programming Concepts</li>
+                <li>LemLib Fundamentals</li>
+                <li>Odometry Stuff</li>
+                <li>Practice Time!!!</li>
+            </ul>
+
+            <p><i>Note: This is practice for LemLib v0.5.x (later versions may work differently). Check the official <a href="https://pros.cs.purdue.edu/">Pros Docs</a> and <a href="https://lemlib.readthedocs.io/en/stable/">LemLib Docs</a> when necessary.</i></p>
+        
+            <div></div>
+        </section>
+
+        <!-- Setup -->
+        <section id="setup", class="page">
+            <h2>Setup</h2>
+            <p><strong>Goal: Make a program that spins a motor.</strong></p>
+
+            <h3 style="margin-bottom: 0.2rem;">What you Need</h3>
+            <ul>
+                <li>A computer (Windows, Mac, or Linux)</li>
+                <li>VS Code (our editor of choice) + PROS</li>
+                <li>LemLib (motion control framework)</li>
+                <li>VEX V5 brain, motor, battery, and a MicroUSB</li>
+            </ul>
+
+            <h3 style="margin-bottom: 0.2rem;">Steps for Setup</h3>
+            <ol>
+                <li>Install VS Code</li>
+                <li>
+                    Get the following VS Code Extensions (go to the extensions tab in the left sidebar), then restart VS Code:
+                    <ul>
+                        <li>C/C++</li>
+                        <li>PROS</li>
+                        <li>GitHub Codespaces (optional)</li>
+                        <li>Prettier (optional)</li>
+                    </ul>
+                </li>
+                <li>
+                    Open the "PROS" tab in the sidebar. Click 
+                    <ul>
+                        <li>Click <i>"Create Project"</i> under <i>"Conductor"</i></li>
+                        <li>Choose the directory as an empty folder</li>
+                        <li>Choose <i>"v5"</i> and <i>"latest"</i></li>
+                    </ul>
+                </li>
+                <li>In the explorer, open the "src" folder and then "main.cpp"</li>
+            </ol>
+
+            <h3>Your First Program</h3>
+            <p>First, remove all of the stuff from the <code>opcontrol()</code> function (at the bottom)</p>
+
+<pre><code class="language-cpp">#include "main.h"
+
+void opcontrol(){
+    pros::Motor motor(1);           // defines a motor plugged into port 1
+
+    while(true){
+        motor.move_velocity(200);   // moves the motor with 200 rpm
+        pros::delay(20);            // wait 20ms to prevent overloading the brain
+    }
+}
+</code></pre>
+
+            <p>Try changing <code>200</code> to <code>-200</code>. What do you think will happen?</p>
+
+            <div id="quiz-setup"></div>
+        </section>
+
+        <!-- C++ -->
+        <section id="cpp" class="page">
+            <h2>Basic C++</h2>
+            <p><strong>Goal: Read and write the small amount of C++ used in VEX code.</strong></p>
+            
+            <h3>Variables &amp Types</h3>
+<pre><code class="language-cpp">int motorPort = 6;          // whole number
+double inches = 3.25;       // decimal number
+bool clawClosed = true;     // true or false
+</code></pre>
+            <p>The first part (red) is the type that defines how the variable will behave. The second part is the name of the variable. The part after the <code>=</code> is what you're setting it to</p>
+
+            <h3>Functions</h3>
+<pre><code class="language-cpp">// takes in an int n, and gives back twice n
+int doubleIt(int n){
+    return n * 2;
+}
+</code></pre>
+            <p>Having a type (like <code>int</code>) before a function says that the function will return a value of that type. In this case, we see that it takes a parameter <code>int n</code>, doubles it and returns the integer equal to <code>2 * n</code>.</p>
+        
+            <h3>Conditionals and Loops</h3>
+<pre><code class="language-cpp">if(speed > 100){
+    speed = 100;            // limit the speed to 100
+}else{
+    speed = speed + 1;      // increase speed by 1
+}
+
+while(true){                // repeat forever
+    // do robot stuff
+}
+</code></pre>
+            <p>The if statement checks if the speed is greater than 100. If it is, it sets it back to 100 (essentially limits it). Otherwise, it adds 1 to it. The while loop infinitely runs, doing whatever is inside of it.</p>
+
+            <h3>Objects</h3>
+<pre><code class="language-cpp">pros::Motor motor(1);       // create a motor object for port 1
+motor.move_velocity(200);   // move the motor at 200rpm
+</code></pre>
+            <p>An object is very similar to a variable. Instead, you define it by calling the type (like <code>pros::Motor</code>), then the name (like <code>motor</code>), then any parameters (the port 1 in this case).</p>
+            <p>The <code>pros::</code> and <code>lemlib::</code> that you see before things are called namespaces. They tell C++ where something comes from, pulling code from other files we imported.</p>
+
+            <div id="quiz-cpp"></div>
+        </section>
+    </main>
+</body>
+</html>
